@@ -64,6 +64,8 @@ set(nodes_folders
 
 qt_build_repo()
 
-qt_path_join(nodes_path "${QT_INSTALL_DIR}" "${INSTALL_QMLDIR}/QtQuickEffectMaker/defaultnodes")
+qt_path_join(nodes_path "${CMAKE_BINARY_DIR}" "${INSTALL_BINDIR}/defaultnodes")
+# create nodes_path recursively
+file(MAKE_DIRECTORY "${nodes_path}")
 message(NOTICE "Nodes path: ${nodes_path}")
-qt_copy_or_install(DIRECTORY ${nodes_folders} DESTINATION ${nodes_path})
+file(COPY ${nodes_folders} DESTINATION ${nodes_path})
